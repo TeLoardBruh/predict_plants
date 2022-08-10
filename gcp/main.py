@@ -5,8 +5,9 @@ import numpy as np
 
 
 model = None
-class_names = ["Early Blight", "Late Blight", "Healthy"]
-BUCKET_NAME = "model-v1-potato-1"
+class_names = ['Pepper bell Bacterial spot', 'Pepper bell healthy', 'Potato Early_blight', 'Potato Late_blight', 'Potato healthy', 'Tomato Bacterial spot', 'Tomato Early blight', 'Tomato Late_blight','Tomato Leaf_Mold', 'Tomato Septoria leaf_spot', 'Tomato Spider mites Two spotted spider mite', 'Tomato Target Spot', 'Tomato Tomato YellowLeaf Curl Virus', 'Tomato Tomato mosaic virus', 'Tomato_healthy']
+
+BUCKET_NAME = "plants_v1"
 
 
 def download_blob(bucket_name, source_blob_name, destination_file_name):
@@ -22,10 +23,10 @@ def predict(request):
     if model is None:
         download_blob(
             BUCKET_NAME,
-            "model/potatoes.h5",
-            "/tmp/potatoes.h5"
+            "models/plants.h5",
+            "/tmp/plants.h5"
         )
-        model = tf.keras.models.load_model("/tmp/potatoes.h5")
+        model = tf.keras.models.load_model("/tmp/plants.h5")
     # open image
     image = request.files["file"]
     # open convert to RGB and into np.py
@@ -68,10 +69,10 @@ def cors(request):
     if model is None:
         download_blob(
             BUCKET_NAME,
-            "model/potatoes.h5",
-            "/tmp/potatoes.h5"
+            "models/plants.h5",
+            "/tmp/plants.h5"
         )
-        model = tf.keras.models.load_model("/tmp/potatoes.h5")
+        model = tf.keras.models.load_model("/tmp/plants.h5")
     # open image
     image = request.files["file"]
     # open convert to RGB and into np.py

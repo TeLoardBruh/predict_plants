@@ -9,9 +9,11 @@ import './mobile/main_mobile.dart';
 
 void main() {
   if (kIsWeb) {
-    runApp(MyAppWeb());
+    runApp(const MaterialApp(
+      home: MyAppWeb(),
+      debugShowCheckedModeBanner: false,
+    ));
   } else {
     runApp(MyApp());
   }
 }
-
